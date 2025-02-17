@@ -10,9 +10,9 @@ const [pName,setPName] = useState("");
 
 useEffect(()=>{
   async function getDetails(){
-    const backendURL = 'http://localhost:4000/api';
-    const res1 = axios.get(backendURL)
-    const res2 = axios.post(`${backendURL}/user`,{name:"himanshu"}) 
+    const backendURL =import.meta.env.MODE ==='production'? import.meta.env.VITE_BACKEND_URL : "http://localhost:4000";
+    const res1 = axios.get(`${backendURL}/api`)
+    const res2 = axios.post(`${backendURL}/api/user`,{name:"himanshu"}) 
     const res = await Promise.all([res1,res2])
     console.log(res);
     setName(res[0].data.details)
